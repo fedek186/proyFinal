@@ -1,0 +1,28 @@
+  ul{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .main-nav{
+    margin: 0;
+  }
+
+  .main-nav li{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .main-nav li a {
+    color: purple;
+  }
+
+  img{
+    width: 10%;
+  }
+
+  nav {
+    background-color: rgb(0, 128, 30);
+  }
