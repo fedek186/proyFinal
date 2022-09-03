@@ -7,7 +7,17 @@ class UnaPeliculaListado extends Component{
         super(props);
         this.state = {
             claseDescripcion: 'hide',
-            textoDescripcion: 'Ver descripcion'
+            textoDescripcion: 'Ver descripcion',
+            textoFavorito: ''
+        }
+    }
+
+    componentDidMount () {
+        let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
+        if(listaLocalStorage.includes(this.props.props.id)){
+            this.setState({textoFavorito: 'Eliminar a favoritos'});
+        } else {
+           this.setState({textoFavorito: 'Agregar a favoritos'});
         }
     }
 
@@ -23,6 +33,28 @@ class UnaPeliculaListado extends Component{
         }
     }
 
+    favoritos(id) {
+        let listaFavs = [];
+        let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
+        let listaActualizada = []
+        if(listaLocalStorage.length !== 0) {
+            listaFavs = listaLocalStorage;
+        }
+        if(listaFavs.includes(id)){
+            this.setState({textoFavorito: 'Agregar a favoritos'});
+            listaActualizada = listaFavs.filter( (elm) => {
+                return elm !== id;
+            });
+        } else {
+           this.setState({textoFavorito: 'Eliminar a favoritos'});
+           listaActualizada = listaFavs;
+           listaActualizada.push(id);
+        }
+
+        let listaFavsJson = JSON.stringify(listaActualizada);
+        localStorage.setItem('favoritos',listaFavsJson);
+    }
+
     render () {
         return (
             <article className='character-card' >
@@ -35,7 +67,7 @@ class UnaPeliculaListado extends Component{
 
             <p className={this.state.claseDescripcion} >Descripcion: {this.props.props.overview}</p>
 
-            <p>agregar favorito falta</p>
+            <p onClick={() => this.favoritos(this.props.props.id)}>{this.state.textoFavorito}</p>
 
         </article>
         )

@@ -16,7 +16,7 @@ class Listado extends Component{
         fetch(this.props.funcionalidades.populares ? `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&page=${this.state.pageNumber}` : `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&page=${this.state.pageNumber}`)
         .then(response=>response.json())
         .then(data=> {
-            console.log(data)
+           /*  console.log(data) */
             this.setState({datos: data.results, pageNumber: this.state.pageNumber + 1})
             })
         .catch(error=>console.log('El error fue: ' + error))
@@ -33,7 +33,7 @@ class Listado extends Component{
     }
 
     render () {
-        console.log(this.props.funcionalidades)
+        /* console.log(this.props.funcionalidades) */
         return (
             <React.Fragment>
                 <h1>{this.props.funcionalidades.populares ? 'Peliculas Populares' : 'Peliculas en Cartel'}</h1>
