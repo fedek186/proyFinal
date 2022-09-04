@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import './Navbar.css'
 
 
-
 function Navbar(props){
     return (
         <nav>
@@ -13,7 +12,6 @@ function Navbar(props){
                 <img src='./img/logo.png' alt='logo diez media'/>
                 <li><Link to='/populares'> Peliculas populares </Link></li>
                 <li><Link to='/cartel'> Peliculas en cartel </Link></li>
-
             </ul>
         </nav>
     )
