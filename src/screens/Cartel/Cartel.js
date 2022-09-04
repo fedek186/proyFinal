@@ -1,5 +1,5 @@
 import React from "react";
-import Listado from "../Listado/Listado";
+import Listado from "../../components/Listado/Listado";
 
 function Cartel() {
     return (

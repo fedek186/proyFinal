@@ -3,8 +3,8 @@ import {BrowserRouter, Link, Route, Switch} from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
-import Cartel from './components/Cartel/Cartel';
-import Populares from './components/Populares/Populares';
+import Cartel from './screens/Cartel/Cartel';
+import Populares from './screens/Populares/Populares';
 import Favoritos from './screens/favoritos/favoritos';
 import Detalle from './screens/detallePel/detallePel';
 
