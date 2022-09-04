@@ -7,6 +7,7 @@ import Cartel from './screens/Cartel/Cartel';
 import Populares from './screens/Populares/Populares';
 import Favoritos from './screens/favoritos/favoritos';
 import Detalle from './screens/detallePel/detallePel';
+import NotFound from './screens/NotFound/NotFound';
 
 function App() {
   let apikey = '66374e925f9ce0061d8e10191732f374'
@@ -24,9 +25,9 @@ function App() {
           <Route path='/cartel' exact={true} component={Populares} />
           <Route path='/favoritos' exact={true} component={Favoritos} />
           <Route path='/unapelicula/id/:id' component={Detalle}/>
-          {/*}
-          <Route path='' component={} />
-          {*/}
+          
+          <Route path='' component={NotFound} />
+          
         </Switch>
 
 
