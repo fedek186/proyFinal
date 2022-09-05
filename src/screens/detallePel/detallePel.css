@@ -1,0 +1,49 @@
+ul {
+    list-style: none;
+}
+
+.containerGeneral {
+    display: flex;
+        height: 70vh;
+        font-family: IBM Plex Sans;
+        color: white;
+}
+
+.imagen{
+    width: 30%;
+    padding:2%
+}
+
+.info{
+    padding: 2%;
+    width: 50%;
+}
+
+.title {
+    font-weight: 500;
+    color: white;
+}
+
+.generos {
+    color: #AB20FD;
+    font-family: IBM Plex Sans;
+    font-weight: 400;
+    margin:0%
+}
+
+.favoritosContainer {
+    text-align: center;
+    width: 50%;
+    outline-color: #FFF96B;
+    outline-style: solid;
+    color: #FFF96B;
+    font-weight: 400;
+}
+
+.fav {
+   
+}
+
+.sinopsis {
+    text-align: justify;
+}

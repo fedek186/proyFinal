@@ -14,7 +14,7 @@ a {
 }
 body {
   margin: 0;
-  background-color: #fff;
+  background-color: #212A30;
 }
 .App {
     text-align: center;
@@ -60,6 +60,8 @@ body {
 #root{
   display: flex;
   flex-direction: column;
+  background-color: #212A30;
+
 }
 
 .card-container {

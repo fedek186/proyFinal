@@ -9,7 +9,7 @@ function Navbar(props){
             <ul className="main-nav">
                 <li><Link to='/'> Home </Link></li>
                 <li><Link to='/favoritos'> Favoritos </Link></li>
-                <img src='./img/logo.png' alt='logo diez media'/>
+                <img src='/img/logo.png' alt='logo diez media'/>
                 <li><Link to='/populares'> Peliculas populares </Link></li>
                 <li><Link to='/cartel'> Peliculas en cartel </Link></li>
             </ul>
