@@ -15,7 +15,7 @@ class ListadoFavs extends Component{
         let listaFavs = []
         if(this.props.funcionalidades.tipo === 'peliculas') {listaFavs = JSON.parse(localStorage.getItem('favoritos'));}
         listaFavs.map((id)=> {
-            fetch(this.props.funcionalidades.tipo === 'peliculas' ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`:'fede')
+            fetch(this.props.funcionalidades.tipo === 'peliculas' ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`:'error')
             .then(response=>response.json())
             .then(data=> {
                 let listaDatos = this.state.datos;
