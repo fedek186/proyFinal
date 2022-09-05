@@ -13,6 +13,7 @@ class Detail extends Component{
     
     componentDidMount () {
         const id = this.props.match.params.id;
+        console.log(this.props.match)
         
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         console.log(listaLocalStorage);
