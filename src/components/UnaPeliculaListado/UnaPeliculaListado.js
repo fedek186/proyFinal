@@ -14,7 +14,7 @@ class UnaPeliculaListado extends Component{
 
     componentDidMount () {
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
-        if(listaLocalStorage.includes(this.props.props.id)){
+        if(listaLocalStorage && listaLocalStorage.includes(this.props.props.id)){
             this.setState({textoFavorito: 'Eliminar a favoritos'});
         } else {
            this.setState({textoFavorito: 'Agregar a favoritos'});
@@ -37,7 +37,7 @@ class UnaPeliculaListado extends Component{
         let listaFavs = [];
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []
-        if(listaLocalStorage.length !== 0) {
+        if(listaLocalStorage && listaLocalStorage.length !== 0) {
             listaFavs = listaLocalStorage;
         }
         if(listaFavs.includes(id)){

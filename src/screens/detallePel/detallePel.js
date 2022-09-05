@@ -16,7 +16,7 @@ class Detail extends Component{
         
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         console.log(listaLocalStorage);
-        if(listaLocalStorage.includes(parseInt(id))){
+        if(listaLocalStorage && listaLocalStorage.includes(parseInt(id))){
            
             this.setState({textoFavorito: 'Eliminar de favoritos'});
         } else {

@@ -67,3 +67,8 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+main {
+  margin-right: 20px;
+  margin-left: 20px;
+}
