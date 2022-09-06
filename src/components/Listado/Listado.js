@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UnaPeliculaListado from '../UnaPeliculaListado/UnaPeliculaListado';
 import {Link} from 'react-router-dom';
+import './Listado.css';
 
 let apikey = '66374e925f9ce0061d8e10191732f374'
 class Listado extends Component{  
@@ -57,7 +58,7 @@ class Listado extends Component{
         }
         return (
             <React.Fragment>
-                <h1> {titulo} </h1>
+                <h1 className="titleListado"> {titulo} </h1>
                 <section className='card-container'>
                     {this.state.datos === '' ? <h3>Cargando ...</h3> : 
                     this.state.datos.map((unPersonaje, idx) => <UnaPeliculaListado props={unPersonaje} key={idx} />)

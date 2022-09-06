@@ -1,5 +1,5 @@
 import React from "react";
-import ListadoFav from "../../components/listadoFavoritos/listadoFavoritos";
+import ListadoFav from "../../components/ListadoFavoritos/ListadoFavoritos";
 
 
 function Favoritos() {

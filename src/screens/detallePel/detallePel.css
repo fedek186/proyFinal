@@ -2,6 +2,10 @@ ul {
     list-style: none;
 }
 
+.listaGeneros {
+    display: flex;
+}
+
 .containerGeneral {
     display: flex;
         height: 70vh;
@@ -25,10 +29,10 @@ ul {
 }
 
 .generos {
+    margin-right: 5%;
     color: #AB20FD;
     font-family: IBM Plex Sans;
     font-weight: 400;
-    margin:0%
 }
 
 .favoritosContainer {

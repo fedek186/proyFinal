@@ -5,7 +5,6 @@ function Populares() {
     return (
         <React.Fragment>            
             <Listado  funcionalidades={{verTodas: false, formFiltro: true, cargarMas: true, populares: true}} />
-
         </React.Fragment>
 
     );

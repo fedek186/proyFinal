@@ -1,0 +1,11 @@
+.titleListado {
+    font-family: IBM Plex Sans;
+    color: #AB20FD;
+    font-weight:400;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }

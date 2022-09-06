@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './detallePel.css'
+import './DetallePel.css'
 
 let apikey = '66374e925f9ce0061d8e10191732f374'
 class Detail extends Component{  
@@ -63,7 +63,7 @@ class Detail extends Component{
                         <img className= "imagen"src={`https://image.tmdb.org/t/p/w342/${this.state.pelicula.poster_path}`} alt=""/>
                         <div className='info'>
                             <h2 className='title'> {this.state.pelicula.title}</h2>
-                            <ul>
+                            <ul className='listaGeneros'>
                                 {this.state.pelicula.genres.map((obj, idx) => <li className='generos' key={idx+obj.name}> {obj.name} </li>)}
                             </ul>
                             <div>

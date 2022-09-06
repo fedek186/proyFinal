@@ -61,13 +61,16 @@ class UnaPeliculaListado extends Component{
             <Link to={`/unapelicula/id/${this.props.props.id}`}>
             <img src={`https://image.tmdb.org/t/p/w342/${this.props.props.poster_path}`} alt="" />
             </Link> 
-            <h2> {this.props.props.title} </h2> 
+            
+            <h2 className="card-title"> {this.props.props.title} </h2> 
+
+            <div className='containerFavCard' onClick={() => this.favoritos(this.props.props.id)}>
+                <p>{this.state.textoFavorito}</p>
+            </div>
 
             <p onClick={() => this.verDescripcion()} className='more'> {this.state.textoDescripcion} </p>
 
             <p className={this.state.claseDescripcion} >Descripcion: {this.props.props.overview}</p>
-
-            <p onClick={() => this.favoritos(this.props.props.id)}>{this.state.textoFavorito}</p>
 
         </article>
         )

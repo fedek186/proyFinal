@@ -1,20 +1,22 @@
 .logo {
-  width: 15%;
-  margin-left: 5%;
+  width: 80%;
 }
 
   nav {
     background-color: #191C1F;
     height: 15vh;
     display:flex;
-    align-items: center;
   }
 
   .main-nav {
+    justify-content: space-around;
     width: 100%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+  }
+
+  .main-nav li {
+    width: 15%;
   }
 
 .main-nav li a {
