@@ -10,7 +10,7 @@ class Listado extends Component{
         this.state = {
             datos: '',
             pageNumber: 1,
-            input: ''
+            input: '',
         }
     }
     componentDidMount () {
