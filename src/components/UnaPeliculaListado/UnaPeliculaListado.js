@@ -37,6 +37,23 @@ class UnaPeliculaListado extends Component{
         }
     }
 
+    funciones() {
+        this.props.favs(this.props.props.id)
+        this.cambiarFav();
+    }
+
+    cambiarFav() {
+         /* Cambiamo el nombre del texto favorito de la pelicula*/
+         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
+         if(listaLocalStorage !== null){
+             if(listaLocalStorage.includes(this.props.props.id)) {
+                 this.setState({textoFavorito: 'Eliminar a favoritos'});
+             } else{
+                 this.setState({textoFavorito: 'Agregar a favoritos'});
+             }
+         }
+    }
+
 
     render () {
         return (
@@ -47,7 +64,7 @@ class UnaPeliculaListado extends Component{
             
             <h2 className="card-title"> {this.props.props.title} </h2> 
 
-            <div className='containerFavCard' onClick={() => this.props.favs(this.props.props.id)}>
+            <div className='containerFavCard' onClick={() => this.funciones() }>
                 <p>{this.state.textoFavorito}</p>
             </div>
 

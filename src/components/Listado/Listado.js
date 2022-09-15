@@ -81,12 +81,10 @@ class Listado extends Component{
         /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
         /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
         if(listaFavs.includes(id)){
-            this.setState({textoFavorito: 'Agregar a favoritos'});
             listaActualizada = listaFavs.filter( (elm) => {
                 return elm !== id;
             });
         } else {
-           this.setState({textoFavorito: 'Eliminar a favoritos'});
            listaActualizada = listaFavs;
            listaActualizada.push(id);
         }
@@ -99,7 +97,6 @@ class Listado extends Component{
 
 
     render () {
-
         let titulo = '';
         if(this.props.funcionalidades.busqueda) {
             titulo = `Resultados de busqueda para ${this.props.busqueda}`;
@@ -136,9 +133,9 @@ class Listado extends Component{
                         '' 
                 }
                 <section className='card-container'>
-                    {mostrar === 'Cargando...' || mostrar === 'No se encontraron resultados para ese filtro' ? <h3 className='noResults'>{mostrar}</h3> :
-                      this.state.datos === [] ? <img src="./img/loader.gif" /> : 
-                        mostrar.map((unaPelicula, idx) => <UnaPeliculaListado props={unaPelicula} favs={(id) => this.favoritos(id)} key={idx} />)
+                    {mostrar === 'Cargando...' ? <img className='loader'src="./img/loader.gif" /> :
+                        mostrar === 'No se encontraron resultados para ese filtro' ? <h3 className='noResults'>{mostrar}</h3> 
+                        : mostrar.map((unaPelicula, idx) => <UnaPeliculaListado props={unaPelicula} favs={(id) => this.favoritos(id)} key={idx} />)
                     }
 
                 </section>

@@ -7,8 +7,7 @@ class ListadoFavs extends Component{
     constructor(props){
         super(props);
         this.state = {
-            datos: [],
-            input: ''
+            datos: []
         }
     }
     componentDidMount () {
@@ -20,7 +19,7 @@ class ListadoFavs extends Component{
             fetch( `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
             .then(response=>response.json())
             .then(data=> {
-                /* COmo obtengo 1 pelicula, entonces lo que hacemos es añadir a cada uno de ellos a una lista de peliculas */
+                /* Como obtengo 1 pelicula, entonces lo que hacemos es añadir a cada uno de ellos a una lista de peliculas */
                 let listaDatos = this.state.datos;
                 listaDatos.push(data)
                 this.setState({datos: listaDatos})
@@ -43,12 +42,10 @@ class ListadoFavs extends Component{
         /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
         /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
         if(listaFavs.includes(id)){
-            this.setState({textoFavorito: 'Agregar a favoritos'});
             listaActualizada = listaFavs.filter( (elm) => {
                 return elm !== id;
             });
         } else {
-           this.setState({textoFavorito: 'Eliminar a favoritos'});
            listaActualizada = listaFavs;
            listaActualizada.push(id);
         }
@@ -57,15 +54,28 @@ class ListadoFavs extends Component{
         let listaFavsJson = JSON.stringify(listaActualizada);
         /* La guardamos en el localStorage */
         localStorage.setItem('favoritos',listaFavsJson);
+        /*Inicializamos devuelta el estado y lo cargamos con nuestra neuva lista*/
+        this.setState({datos: []})
+        listaActualizada.map((id)=> {
+            fetch( `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
+            .then(response=>response.json())
+            .then(data=> {
+                /* Como obtengo 1 pelicula, entonces lo que hacemos es añadir a cada uno de ellos a una lista de peliculas */
+                let listaDatos = this.state.datos;
+                listaDatos.push(data)
+                this.setState({datos: listaDatos})
+            })
+            .catch(error=>console.log('El error fue: ' + error))
+        })
     }
 
     render () {
         return (
             <React.Fragment>
-                <h1 className='titleListado'>Peliculas Favoritas</h1>
-                <p>{this.props.funcionalidades.formFiltro ? 'aca va el input y el form' : ''}</p>           
+                <h1 className='titleListado'>Peliculas Favoritas</h1>  
+                      
                 <section className='card-container'>
-                    {this.state.datos === [] ? <img src="./img/loader.gif" /> : 
+                    {this.state.datos.length === 0 ? <img className='loader' src="./img/loader.gif" /> : 
                     this.state.datos.map((unaPelicula, idx) => <UnaPeliculaListado props={unaPelicula} favs={(id) => this.favoritos(id)} key={idx} />)
                     }
                 </section>
