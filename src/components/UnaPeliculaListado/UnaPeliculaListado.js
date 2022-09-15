@@ -8,17 +8,19 @@ class UnaPeliculaListado extends Component{
         this.state = {
             claseDescripcion: 'hide',
             textoDescripcion: 'Ver descripcion',
-            textoFavorito: ''
+            textoFavorito: 'Agregar a favoritos'
         }
     }
 
     componentDidMount () {
         /* Cambiamo el nombre del texto favorito de la pelicula*/
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
-        if(listaLocalStorage && listaLocalStorage.includes(this.props.props.id)){
-            this.setState({textoFavorito: 'Eliminar a favoritos'});
-        } else {
-           this.setState({textoFavorito: 'Agregar a favoritos'});
+        if(listaLocalStorage !== null){
+            if(listaLocalStorage.includes(this.props.props.id)) {
+                this.setState({textoFavorito: 'Eliminar a favoritos'});
+            } else{
+                this.setState({textoFavorito: 'Agregar a favoritos'});
+            }
         }
     }
 
@@ -35,34 +37,6 @@ class UnaPeliculaListado extends Component{
         }
     }
 
-    favoritos(id) {
-        /* Hacemos el añadir/quitar favorito */
-        let listaFavs = [];
-        /* Traemos la lista favoritos, sino existe trae undefined */
-        let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
-        let listaActualizada = []
-        /* Si existe entonces lo que hacemos es guardarlo en nuestra lista favoritos */
-        if(listaLocalStorage && listaLocalStorage.length !== 0) {
-            listaFavs = listaLocalStorage;
-        }
-        /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
-        /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
-        if(listaFavs.includes(id)){
-            this.setState({textoFavorito: 'Agregar a favoritos'});
-            listaActualizada = listaFavs.filter( (elm) => {
-                return elm !== id;
-            });
-        } else {
-           this.setState({textoFavorito: 'Eliminar a favoritos'});
-           listaActualizada = listaFavs;
-           listaActualizada.push(id);
-        }
-
-        /* Convertimos la lista a JSON */
-        let listaFavsJson = JSON.stringify(listaActualizada);
-        /* La guardamos en el localStorage */
-        localStorage.setItem('favoritos',listaFavsJson);
-    }
 
     render () {
         return (
@@ -73,7 +47,7 @@ class UnaPeliculaListado extends Component{
             
             <h2 className="card-title"> {this.props.props.title} </h2> 
 
-            <div className='containerFavCard' onClick={() => this.favoritos(this.props.props.id)}>
+            <div className='containerFavCard' onClick={() => this.props.favs(this.props.props.id)}>
                 <p>{this.state.textoFavorito}</p>
             </div>
 

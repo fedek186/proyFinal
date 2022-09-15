@@ -1,0 +1,23 @@
+.search{
+    display: flex;
+    margin-top: 1%;
+}
+
+.text{
+    padding: 0.5%;
+    border: 0px;
+    width: 40%;
+    font-family: IBM Plex Sans; 
+    color: white;
+    background-color: #63696D;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.438);
+  }
+  
+
+.IconContainer{
+    background-color: #191C1F;
+    padding: 0.5%;
+}

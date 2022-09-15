@@ -36,6 +36,7 @@ class Listado extends Component{
                 })
                 .catch(error=>console.log('El error fue: ' + error)) 
             }
+        this.setState({pageNumber:this.state.pageNumber + 1})
         
     }
 }
@@ -67,8 +68,38 @@ class Listado extends Component{
         }
     };
 
+    favoritos(id) {
+        /* Hacemos el añadir/quitar favorito */
+        let listaFavs = [];
+        /* Traemos la lista favoritos, sino existe trae undefined */
+        let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
+        let listaActualizada = []
+        /* Si existe entonces lo que hacemos es guardarlo en nuestra lista favoritos */
+        if(listaLocalStorage && listaLocalStorage.length !== 0) {
+            listaFavs = listaLocalStorage;
+        }
+        /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
+        /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
+        if(listaFavs.includes(id)){
+            this.setState({textoFavorito: 'Agregar a favoritos'});
+            listaActualizada = listaFavs.filter( (elm) => {
+                return elm !== id;
+            });
+        } else {
+           this.setState({textoFavorito: 'Eliminar a favoritos'});
+           listaActualizada = listaFavs;
+           listaActualizada.push(id);
+        }
+
+        /* Convertimos la lista a JSON */
+        let listaFavsJson = JSON.stringify(listaActualizada);
+        /* La guardamos en el localStorage */
+        localStorage.setItem('favoritos',listaFavsJson);
+    }
+
 
     render () {
+
         let titulo = '';
         if(this.props.funcionalidades.busqueda) {
             titulo = `Resultados de busqueda para ${this.props.busqueda}`;
@@ -79,45 +110,40 @@ class Listado extends Component{
         let mostrar;
         if(this.state.datos === '') {
             mostrar = 'Cargando...'
-            console.log(mostrar);
-
         } else {
             if(this.state.data2 === '') {
             mostrar = this.state.datos
-            console.log(mostrar);
 
-            } else if (this.state.data2 === []){
+            } else if (this.state.data2.length === 0){
                 mostrar = 'No se encontraron resultados para ese filtro'
-                console.log(mostrar);
-
+         
             } else {
                 mostrar = this.state.data2
-                console.log(mostrar);
-
             }
         }
-        console.log(mostrar);
-
 
         return (
             <React.Fragment>
                 <h1 className="titleListado"> {titulo} </h1>
-                <section className='card-container'>
-                    {this.props.funcionalidades.formFiltro ? 
-                        <form onSubmit={(e) => this.prevRecarga(e)}>
-                        <input type='text' placeholder='pelicula' onChange={(e) => this.saveChanges(e)} value={this.state.input} />
-                        <Link to={`/searchresult/id/${this.state.input}`}> <input type='submit' value='submit' /> </Link>    
+                {this.props.funcionalidades.formFiltro ? 
+                        <form className='search' onSubmit={(e) => this.prevRecarga(e)}>
+                            <div className="IconContainer"> 
+                                <img src='/img/iconSearch.svg' alt='Search' className="search-icon" />
+                            </div>
+                            <input className="text" type='text' placeholder='pelicula' onChange={(e) => this.saveChanges(e)} value={this.state.input} />  
                         </form> 
                         :
-                        ''
-                        }
-                    {mostrar === 'Cargando...' || mostrar === 'No se encontraron resultados para ese filtro' ? <h3>mostrar</h3> :
-                    mostrar.map((unaPelicula, idx) => <UnaPeliculaListado key={idx} props={unaPelicula}/>)
+                        '' 
+                }
+                <section className='card-container'>
+                    {mostrar === 'Cargando...' || mostrar === 'No se encontraron resultados para ese filtro' ? <h3 className='noResults'>{mostrar}</h3> :
+                      this.state.datos === [] ? <img src="./img/loader.gif" /> : 
+                        mostrar.map((unaPelicula, idx) => <UnaPeliculaListado props={unaPelicula} favs={(id) => this.favoritos(id)} key={idx} />)
                     }
 
                 </section>
-                {this.props.funcionalidades.cargarMas ? <button onClick={() => this.masPeliculas()}> Mas Peliculas </button> : ''}                
-                {this.props.funcionalidades.verTodas ? <h1><Link to={this.props.funcionalidades.populares ? '/populares' : '/cartel'}> Ver todas las {this.props.funcionalidades.populares ? 'Peliculas Populares' : 'Peliculas en Cartel'} </Link></h1> : ''}                
+                {this.props.funcionalidades.cargarMas ? <button className='traerMas'onClick={() => this.masPeliculas()}> Mas Peliculas </button> : ''}                
+                {this.props.funcionalidades.verTodas ? <h3 className='vertTodas'><Link to={this.props.funcionalidades.populares ? '/populares' : '/cartel'}> Ver todas las {this.props.funcionalidades.populares ? 'Peliculas Populares' : 'Peliculas en Cartel'} </Link></h3> : ''}                
             </React.Fragment>
         )
 

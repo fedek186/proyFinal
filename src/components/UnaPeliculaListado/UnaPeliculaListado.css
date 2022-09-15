@@ -1,5 +1,6 @@
 .show{
     display: block;
+    color: white;
 }
 .hide{
     display: none;

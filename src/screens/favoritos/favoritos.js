@@ -5,10 +5,7 @@ import ListadoFav from "../../components/ListadoFavoritos/ListadoFavoritos";
 function Favoritos() {
     return (
         <React.Fragment>
-            {/* formulario de busqueda */}
-            
             <ListadoFav  funcionalidades={{formFiltro: true}} />
-
         </React.Fragment>
 
     );

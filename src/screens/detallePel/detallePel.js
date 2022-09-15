@@ -57,7 +57,7 @@ class Detail extends Component{
         return (
             <React.Fragment>
                 {
-                this.state.pelicula === '' ? <h3>Cargando ...</h3> : 
+                this.state.pelicula === '' ?<img src="./img/loader.gif" /> : 
                     <article className="containerGeneral">
                         <img className= "imagen"src={`https://image.tmdb.org/t/p/w342/${this.state.pelicula.poster_path}`} alt=""/>
                         <div className='info'>

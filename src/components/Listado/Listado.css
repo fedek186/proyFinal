@@ -9,3 +9,52 @@
     flex-wrap: wrap;
     justify-content: space-around;
   }
+
+  .vertTodas a {
+    font-family: IBM Plex Sans; 
+    color:#FFF96B;
+    font-weight:lighter;
+  }
+
+  .traerMas {
+    font-family: IBM Plex Sans; 
+    outline: none;
+    background-color: #FFF96B;
+    border-radius: 2.5px;
+    border: 0px;
+    width: 20%;
+    padding: 1%;
+    text-align: center;
+    margin-left: 40%;
+    margin-bottom: 1%;
+  }
+
+.search{
+    display: flex;
+    margin-top: 1%;
+}
+
+.text{
+    padding: 0.5%;
+    border: 0px;
+    width: 40%;
+    font-family: IBM Plex Sans; 
+    color: white;
+    background-color: #63696D;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.438);
+  }
+  
+
+.IconContainer{
+    background-color: #191C1F;
+    padding: 0.5%;
+}
+
+.noResults {
+  font-family: IBM Plex Sans;
+  color: #AB20FD;
+  font-weight:400; 
+}
