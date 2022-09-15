@@ -11,7 +11,6 @@ import NotFound from './screens/NotFound/NotFound';
 import ResBusqueda from './screens/ResBusqueda/ResBusqueda'
 
 function App() {
-  let apikey = '66374e925f9ce0061d8e10191732f374'
   return (
     <React.Fragment>
       <header>

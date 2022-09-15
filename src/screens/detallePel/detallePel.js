@@ -12,17 +12,16 @@ class Detail extends Component{
     }
     
     componentDidMount () {
+        /* Obtengo el id que me mandaron por parametro y hago un fetch de esa pelicula */ 
         const id = this.props.match.params.id;
-        console.log(this.props.match,'Fede')
+        /* Cambio el estado de favoritos */ 
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
-        console.log(listaLocalStorage);
         if(listaLocalStorage && listaLocalStorage.includes(parseInt(id))){
            
             this.setState({textoFavorito: 'Eliminar de favoritos'});
         } else {
            this.setState({textoFavorito: 'Agregar a favoritos'});
         }
-        
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
         .then(response=>response.json())
         .then(data=> {
@@ -32,7 +31,7 @@ class Detail extends Component{
     }
 
     favoritos(id) {
-        console.log('Fede')
+        /* Hago la funcionalidad del agregar/quitar favs*/ 
         let listaFavs = [];
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []

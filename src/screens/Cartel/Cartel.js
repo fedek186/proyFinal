@@ -5,7 +5,6 @@ function Cartel() {
     return (
         <React.Fragment>            
             <Listado  funcionalidades={{verTodas: false, formFiltro: true, cargarMas: true, populares: false, busqueda:false}} />
-
         </React.Fragment>
 
     );

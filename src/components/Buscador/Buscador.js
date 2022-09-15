@@ -9,13 +9,15 @@ class Buscador extends Component{
         }
     }
     prevRecarga(e){ 
+        //Evitamos se envie el formulario
         e.preventDefault();
     };
     saveChanges(e){ 
+        //Hacemos que en el estado se guarde el valor del onChange xq sino estaria atrasado
         this.setState({input: e.target.value}); 
     };
     render () {
-        /* console.log(this.props.funcionalidades) */
+        
         return (
             <React.Fragment>
                 <form onSubmit={(e) => this.prevRecarga(e)}>

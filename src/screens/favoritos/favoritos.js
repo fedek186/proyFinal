@@ -7,7 +7,7 @@ function Favoritos() {
         <React.Fragment>
             {/* formulario de busqueda */}
             
-            <ListadoFav  funcionalidades={{tipo:'peliculas',formFiltro: true}} />
+            <ListadoFav  funcionalidades={{formFiltro: true}} />
 
         </React.Fragment>
 

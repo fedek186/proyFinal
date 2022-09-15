@@ -13,6 +13,7 @@ class UnaPeliculaListado extends Component{
     }
 
     componentDidMount () {
+        /* Cambiamo el nombre del texto favorito de la pelicula*/
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         if(listaLocalStorage && listaLocalStorage.includes(this.props.props.id)){
             this.setState({textoFavorito: 'Eliminar a favoritos'});
@@ -22,6 +23,7 @@ class UnaPeliculaListado extends Component{
     }
 
     verDescripcion(){
+        /* Hacemos la funcion de ver la descriocion. Nos preguntamos si en el estado esta oculto y dependiendo de eso la mostramos y alteramos el estado */
         if(this.state.claseDescripcion === 'hide'){
             this.setState({
                 claseDescripcion: 'show', textoDescripcion: 'Ocultar descripcion'
@@ -34,12 +36,17 @@ class UnaPeliculaListado extends Component{
     }
 
     favoritos(id) {
+        /* Hacemos el añadir/quitar favorito */
         let listaFavs = [];
+        /* Traemos la lista favoritos, sino existe trae undefined */
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []
+        /* Si existe entonces lo que hacemos es guardarlo en nuestra lista favoritos */
         if(listaLocalStorage && listaLocalStorage.length !== 0) {
             listaFavs = listaLocalStorage;
         }
+        /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
+        /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
         if(listaFavs.includes(id)){
             this.setState({textoFavorito: 'Agregar a favoritos'});
             listaActualizada = listaFavs.filter( (elm) => {
@@ -51,7 +58,9 @@ class UnaPeliculaListado extends Component{
            listaActualizada.push(id);
         }
 
+        /* Convertimos la lista a JSON */
         let listaFavsJson = JSON.stringify(listaActualizada);
+        /* La guardamos en el localStorage */
         localStorage.setItem('favoritos',listaFavsJson);
     }
 

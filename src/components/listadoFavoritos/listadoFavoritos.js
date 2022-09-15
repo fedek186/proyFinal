@@ -12,12 +12,15 @@ class ListadoFavs extends Component{
         }
     }
     componentDidMount () {
+
         let listaFavs = []
-        if(this.props.funcionalidades.tipo === 'peliculas') {listaFavs = JSON.parse(localStorage.getItem('favoritos'));}
+        /* Obtengo los elemento de favoritos y hago un fetch de cada*/
+        if(localStorage.getItem('favoritos')) {listaFavs = JSON.parse(localStorage.getItem('favoritos'));}
         listaFavs.map((id)=> {
             fetch(this.props.funcionalidades.tipo === 'peliculas' ? `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`:'error')
             .then(response=>response.json())
             .then(data=> {
+                /* COmo obtengo 1 pelicula, entonces lo que hacemos es añadir a cada uno de ellos a una lista de peliculas */
                 let listaDatos = this.state.datos;
                 listaDatos.push(data)
                 this.setState({datos: listaDatos})
@@ -29,7 +32,7 @@ class ListadoFavs extends Component{
     render () {
         return (
             <React.Fragment>
-                <h1>{this.props.funcionalidades.tipo === 'peliculas' ? 'Peliculas Favoritas' : 'Series favoritas'}</h1>
+                <h1>Peliculas Favoritas</h1>
                 <p>{this.props.funcionalidades.formFiltro ? 'aca va el input y el form' : ''}</p>           
                 <section className='card-container'>
                     {this.state.datos === [] ? <h3>Cargando ...</h3> : 

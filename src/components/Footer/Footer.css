@@ -1,9 +1,11 @@
 #footer{
     display: flex;
     justify-content: space-around;
-    background-color: green;
+    background-color: #20272e;
 }
 
 #footer h3 {
-    color: purple;
+    color: white;
+    font-weight: 400;
+    font-family: IBM Plex Sans;
 }

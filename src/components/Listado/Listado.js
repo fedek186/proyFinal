@@ -15,7 +15,9 @@ class Listado extends Component{
     }
     componentDidMount () {
         let busqueda = this.props.busqueda;
+        /* Nos fijamos si se va a usar el listado para busqueda */
         if(this.props.funcionalidades.busqueda){
+                /* Si es así traemos las peliculas buscadas de la API y las guardamos en data dentro del estado*/ 
                 fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apikey}&query=${busqueda}`)
                     .then(response=>response.json())
                     .then(data=> {
@@ -25,6 +27,7 @@ class Listado extends Component{
                     .catch(error=>console.log('El error fue: ' + error))
         } else {
             {
+                /*Sino hay dos opciones o populares o cartel, hacemos un if ternario que haga lo mismo*/
                 fetch(this.props.funcionalidades.populares ? `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&page=${this.state.pageNumber}` : `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&page=${this.state.pageNumber}`) 
                 .then(response=>response.json()) 
                 .then(data=> {this.setState({datos: data.results})}) 
@@ -35,6 +38,7 @@ class Listado extends Component{
 }
 
     masPeliculas() {
+        //Esta es la funcion + peliculas que lo que hace es traer, sea de populares o cartel la siguiente pagina. Actualizado el pageNumbre
         fetch(this.props.funcionalidades.populares ? `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&page=${this.state.pageNumber}` : `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&page=${this.state.pageNumber}`)
         .then(response=>response.json())
         .then(data=> {
@@ -49,7 +53,6 @@ class Listado extends Component{
     }
 
     render () {
-        /* console.log(this.props.funcionalidades) */
         let titulo = '';
         if(this.props.funcionalidades.busqueda) {
             titulo = `Resultados de busqueda para ${this.props.busqueda}`;
