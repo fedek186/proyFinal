@@ -8,7 +8,6 @@ import Populares from './screens/Populares/Populares';
 import Favoritos from './screens/Favoritos/Favoritos';
 import Detalle from './screens/DetallePel/DetallePel';
 import NotFound from './screens/NotFound/NotFound';
-import ResBusqueda from './screens/ResBusqueda/ResBusqueda'
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
           <Route path='/cartel' exact={true} component={Populares} />
           <Route path='/favoritos' exact={true} component={Favoritos} />
           <Route path='/unapelicula/id/:id' component={Detalle}/>
-          <Route path='/searchresult/id/:id' component={ResBusqueda}/>
 
           <Route path='' component={NotFound} />
           

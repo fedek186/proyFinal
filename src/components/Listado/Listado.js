@@ -10,7 +10,8 @@ class Listado extends Component{
         this.state = {
             datos: '',
             pageNumber: 1,
-            input: ''
+            input: '',
+            data2: ''
         }
     }
     componentDidMount () {
@@ -30,7 +31,9 @@ class Listado extends Component{
                 /*Sino hay dos opciones o populares o cartel, hacemos un if ternario que haga lo mismo*/
                 fetch(this.props.funcionalidades.populares ? `https://api.themoviedb.org/3/movie/popular?api_key=${apikey}&page=${this.state.pageNumber}` : `https://api.themoviedb.org/3/movie/now_playing?api_key=${apikey}&page=${this.state.pageNumber}`) 
                 .then(response=>response.json()) 
-                .then(data=> {this.setState({datos: data.results})}) 
+                .then(data=> {
+                    this.setState({datos: data.results})
+                })
                 .catch(error=>console.log('El error fue: ' + error)) 
             }
         
@@ -48,9 +51,22 @@ class Listado extends Component{
         .catch(error=>console.log('El error fue: ' + error))
     }
 
-    filterPeliculas(){
+    prevRecarga(e){ 
+        e.preventDefault();
+    };
+    saveChanges(e){ 
+        this.setState({input: e.target.value}); 
+        if (e.target.value !== ''){
+            let result = this.state.datos.filter((unaPelicula) => {
+                return unaPelicula.title.toLowerCase().includes(e.target.value)
+                })
+            console.log(result);
+            this.setState({data2: result}, () => console.log(this.state.data2))    
+        } else {
+            this.setState({data2: ''})
+        }
+    };
 
-    }
 
     render () {
         let titulo = '';
@@ -59,13 +75,46 @@ class Listado extends Component{
         } else {
             this.props.funcionalidades.populares ? titulo = 'Peliculas Populares' : titulo = 'Peliculas en Cartel'
         }
+
+        let mostrar;
+        if(this.state.datos === '') {
+            mostrar = 'Cargando...'
+            console.log(mostrar);
+
+        } else {
+            if(this.state.data2 === '') {
+            mostrar = this.state.datos
+            console.log(mostrar);
+
+            } else if (this.state.data2 === []){
+                mostrar = 'No se encontraron resultados para ese filtro'
+                console.log(mostrar);
+
+            } else {
+                mostrar = this.state.data2
+                console.log(mostrar);
+
+            }
+        }
+        console.log(mostrar);
+
+
         return (
             <React.Fragment>
                 <h1 className="titleListado"> {titulo} </h1>
                 <section className='card-container'>
-                    {this.state.datos === '' ? <h3>Cargando ...</h3> : 
-                    this.state.datos.map((unPersonaje, idx) => <UnaPeliculaListado props={unPersonaje} key={idx} />)
+                    {this.props.funcionalidades.formFiltro ? 
+                        <form onSubmit={(e) => this.prevRecarga(e)}>
+                        <input type='text' placeholder='pelicula' onChange={(e) => this.saveChanges(e)} value={this.state.input} />
+                        <Link to={`/searchresult/id/${this.state.input}`}> <input type='submit' value='submit' /> </Link>    
+                        </form> 
+                        :
+                        ''
+                        }
+                    {mostrar === 'Cargando...' || mostrar === 'No se encontraron resultados para ese filtro' ? <h3>mostrar</h3> :
+                    mostrar.map((unaPelicula, idx) => <UnaPeliculaListado key={idx} props={unaPelicula}/>)
                     }
+
                 </section>
                 {this.props.funcionalidades.cargarMas ? <button onClick={() => this.masPeliculas()}> Mas Peliculas </button> : ''}                
                 {this.props.funcionalidades.verTodas ? <h1><Link to={this.props.funcionalidades.populares ? '/populares' : '/cartel'}> Ver todas las {this.props.funcionalidades.populares ? 'Peliculas Populares' : 'Peliculas en Cartel'} </Link></h1> : ''}                
