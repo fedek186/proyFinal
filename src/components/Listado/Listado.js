@@ -69,17 +69,14 @@ class Listado extends Component{
     };
 
     favoritos(id) {
-        /* Hacemos el añadir/quitar favorito */
-        let listaFavs = [];
-        /* Traemos la lista favoritos, sino existe trae undefined */
+        let listaFavs = []
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []
-        /* Si existe entonces lo que hacemos es guardarlo en nuestra lista favoritos */
-        if(listaLocalStorage && listaLocalStorage.length !== 0) {
+
+        if(listaLocalStorage !== null) {
             listaFavs = listaLocalStorage;
         }
-        /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
-        /* Luego cambiamos el estado del texto y actualizamos el array (agregando o sacando) */
+
         if(listaFavs.includes(id)){
             listaActualizada = listaFavs.filter( (elm) => {
                 return elm !== id;
@@ -89,9 +86,7 @@ class Listado extends Component{
            listaActualizada.push(id);
         }
 
-        /* Convertimos la lista a JSON */
         let listaFavsJson = JSON.stringify(listaActualizada);
-        /* La guardamos en el localStorage */
         localStorage.setItem('favoritos',listaFavsJson);
     }
 

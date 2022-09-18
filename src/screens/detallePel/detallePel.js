@@ -35,7 +35,7 @@ class Detail extends Component{
         let listaFavs = [];
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []
-        if(listaLocalStorage && listaLocalStorage.length !== 0) {
+        if(listaLocalStorage !== null) {
             listaFavs = listaLocalStorage;
         }
         if(listaFavs.includes(id)){

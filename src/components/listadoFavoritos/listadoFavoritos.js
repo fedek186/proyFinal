@@ -36,7 +36,7 @@ class ListadoFavs extends Component{
         let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
         let listaActualizada = []
         /* Si existe entonces lo que hacemos es guardarlo en nuestra lista favoritos */
-        if(listaLocalStorage && listaLocalStorage.length !== 0) {
+        if(listaLocalStorage !== null) {
             listaFavs = listaLocalStorage;
         }
         /* Ahora vamos a chequear si queria agregar o sacar, sacar = el id ya estaba en la lista */
@@ -75,7 +75,10 @@ class ListadoFavs extends Component{
                 <h1 className='titleListado'>Peliculas Favoritas</h1>  
                       
                 <section className='card-container'>
-                    {this.state.datos.length === 0 ? <img className='loader' src="./img/loader.gif" /> : 
+                    {
+                    localStorage.getItem('favoritos') === null ? <h2 className='titleListado'>No hay peliculas en favoritos </h2> :
+                    JSON.parse(localStorage.getItem('favoritos')).length === 0 ? <h2 className='titleListado'>No hay peliculas en favoritos </h2> :
+                    this.state.datos.length === 0 ? <img className='loader' src="./img/loader.gif" /> : 
                     this.state.datos.map((unaPelicula, idx) => <UnaPeliculaListado props={unaPelicula} favs={(id) => this.favoritos(id)} key={idx} />)
                     }
                 </section>

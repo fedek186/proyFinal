@@ -43,7 +43,6 @@ class UnaPeliculaListado extends Component{
     }
 
     cambiarFav() {
-         /* Cambiamo el nombre del texto favorito de la pelicula*/
          let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
          if(listaLocalStorage !== null){
              if(listaLocalStorage.includes(this.props.props.id)) {
