@@ -1,6 +1,5 @@
 import React from "react";
-import ListadoFav from "../../components/ListadoFavoritos/ListadoFavoritos";
-
+import ListadoFav from '../../components/listadoFavoritos/listadoFavoritos'
 
 function Favoritos() {
     return (
