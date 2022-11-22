@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './DetallePel.css'
+import './detallePel.css'
 
 let apikey = '66374e925f9ce0061d8e10191732f374'
 class Detail extends Component{  

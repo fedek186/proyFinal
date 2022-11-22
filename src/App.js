@@ -5,8 +5,8 @@ import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
 import Cartel from './screens/Cartel/Cartel';
 import Populares from './screens/Populares/Populares';
-import Favoritos from './screens/Favoritos/Favoritos';
-import Detalle from './screens/DetallePel/DetallePel';
+import Favoritos from './screens/favoritos/favoritos'
+import Detalle from './screens/detallePel/detallePel'
 import NotFound from './screens/NotFound/NotFound';
 
 function App() {
