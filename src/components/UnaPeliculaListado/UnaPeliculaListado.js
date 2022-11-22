@@ -14,14 +14,7 @@ class UnaPeliculaListado extends Component{
 
     componentDidMount () {
         /* Cambiamo el nombre del texto favorito de la pelicula*/
-        let listaLocalStorage = JSON.parse(localStorage.getItem('favoritos'))
-        if(listaLocalStorage !== null){
-            if(listaLocalStorage.includes(this.props.props.id)) {
-                this.setState({textoFavorito: 'Eliminar a favoritos'});
-            } else{
-                this.setState({textoFavorito: 'Agregar a favoritos'});
-            }
-        }
+        this.cambiarFav()
     }
 
     verDescripcion(){
