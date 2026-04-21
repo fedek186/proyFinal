@@ -5,8 +5,10 @@ import Footer from './components/Footer/Footer';
 import Home from './screens/Home/Home';
 import Cartel from './screens/Cartel/Cartel';
 import Populares from './screens/Populares/Populares';
-import Favoritos from './screens/favoritos/favoritos'
-import Detalle from './screens/detallePel/detallePel'
+import Favoritos from './screens/Favoritos/favoritos'
+import Detalle from './screens/DetallePel/detallePel'
+import Login from './screens/Login/Login';
+import Register from './screens/Register/Register';
 import NotFound from './screens/NotFound/NotFound';
 
 function App() {
@@ -20,13 +22,14 @@ function App() {
         <Switch>
           
           <Route path='/' exact={true} component={Home} />
+          <Route path='/login' exact={true} component={Login} />
+          <Route path='/register' exact={true} component={Register} />
           <Route path='/cartel' exact={true} component={Cartel} />
           <Route path='/populares' exact={true} component={Populares} />
           <Route path='/favoritos' exact={true} component={Favoritos} />
           <Route path='/unapelicula/id/:id' component={Detalle}/>
-
           <Route path='' component={NotFound} />
-          
+          this.match.params.identificador
         </Switch>
 
 

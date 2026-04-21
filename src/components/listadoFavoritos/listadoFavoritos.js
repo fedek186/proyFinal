@@ -19,10 +19,7 @@ class ListadoFavs extends Component{
             fetch( `https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
             .then(response=>response.json())
             .then(data=> {
-                /* Como obtengo 1 pelicula, entonces lo que hacemos es añadir a cada uno de ellos a una lista de peliculas */
-                let listaDatos = this.state.datos;
-                listaDatos.push(data)
-                this.setState({datos: listaDatos})
+
             })
             .catch(error=>console.log('El error fue: ' + error))
         })

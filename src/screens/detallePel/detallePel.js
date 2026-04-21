@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './detallePel.css'
+import '../DetallePel/DetallePel.css'
 
 let apikey = '66374e925f9ce0061d8e10191732f374'
 class Detail extends Component{  
@@ -22,9 +22,11 @@ class Detail extends Component{
         } else {
            this.setState({textoFavorito: 'Agregar a favoritos'});
         }
+        console.log(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
         .then(response=>response.json())
         .then(data=> {
+            console.log(data)
             this.setState({pelicula: data})
         })
         .catch(error=>console.log('El error fue: ' + error))
@@ -50,25 +52,26 @@ class Detail extends Component{
         }
 
         let listaFavsJson = JSON.stringify(listaActualizada);
-        localStorage.setItem('favoritos',listaFavsJson);
+        localStorage.setItem('favoritos',JSON.stringify(listaActualizada));
     }
 
     render () {
+        console.log(this.state.pelicula)
         return (
             <React.Fragment>
                 {
                 this.state.pelicula === '' ?<img src="./img/loader.gif" /> : 
                     <article className="containerGeneral">
-                        <img className= "imagen"src={`https://image.tmdb.org/t/p/w342/${this.state.pelicula.poster_path}`} alt=""/>
+                        <img className= "imagen"src={`https://image.tmdb.org/t/p/w342/${this.state.pelicula?.poster_path}`} alt=""/>
                         <div className='info'>
-                            <h2 className='title'> {this.state.pelicula.title}</h2>
+                            <h2 className='title'> {this.state.pelicula?.title}</h2>
                             <ul className='listaGeneros'>
-                                {this.state.pelicula.genres.map((obj, idx) => <li className='generos' key={idx+obj.name}> {obj.name} </li>)}
+                                {this.state.pelicula?.genres.map((obj, idx) => <li className='generos' key={idx+obj.name}> {obj.name} </li>)}
                             </ul>
                             <div>
-                                <p>{this.state.pelicula.release_date}</p>
-                                <p>Rating: {this.state.pelicula.vote_average}</p>
-                                <p>Duracion: {this.state.pelicula.runtime} min</p>
+                                <p>{this.state.pelicula?.release_date}</p>
+                                <p>Rating: {this.state.pelicula?.vote_average}</p>
+                                <p>Duracion: {this.state.pelicula?.runtime} min</p>
                             </div>
                             <p className='sinopsis'>{this.state.pelicula.overview}</p>
                             

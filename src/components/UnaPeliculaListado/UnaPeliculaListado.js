@@ -6,11 +6,11 @@ class UnaPeliculaListado extends Component{
     constructor(props){
         super(props);
         this.state = {
-            claseDescripcion: 'hide',
-            textoDescripcion: 'Ver descripcion',
-            textoFavorito: 'Agregar a favoritos'
+            claseDescripcion: 'show', 
+            textoDescripcion: 'Ocultar descripcion'
         }
     }
+
 
     componentDidMount () {
         /* Cambiamo el nombre del texto favorito de la pelicula*/
